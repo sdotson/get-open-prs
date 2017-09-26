@@ -9,9 +9,9 @@ agent-base@2:
     extend "~3.0.0"
     semver "~5.0.1"
 
-ansi-escapes@^2.0.0:
-  version "2.0.0"
-  resolved "https://upsidetravel.jfrog.io/upsidetravel/api/npm/npm-virtual/ansi-escapes/-/ansi-escapes-2.0.0.tgz#5bae52be424878dd9783e8910e3fc2922e83c81b"
+ansi-escapes@^3.0.0:
+  version "3.0.0"
+  resolved "https://upsidetravel.jfrog.io/upsidetravel/api/npm/npm-virtual/ansi-escapes/-/ansi-escapes-3.0.0.tgz#ec3e8b4e9f8064fc02c3ac9b65f1c275bda8ef92"
 
 ansi-regex@^3.0.0:
   version "3.0.0"
@@ -215,11 +215,11 @@ iconv-lite@^0.4.17:
   version "0.4.18"
   resolved "https://upsidetravel.jfrog.io/upsidetravel/api/npm/npm-virtual/iconv-lite/-/iconv-lite-0.4.18.tgz#23d8656b16aae6742ac29732ea8f0336a4789cf2"
 
-inquirer@^3.2.2:
-  version "3.2.3"
-  resolved "https://upsidetravel.jfrog.io/upsidetravel/api/npm/npm-virtual/inquirer/-/inquirer-3.2.3.tgz#1c7b1731cf77b934ec47d22c9ac5aa8fe7fbe095"
+inquirer@^3.3.0:
+  version "3.3.0"
+  resolved "https://upsidetravel.jfrog.io/upsidetravel/api/npm/npm-virtual/inquirer/-/inquirer-3.3.0.tgz#9dd2f2ad765dcab1ff0443b491442a20ba227dc9"
   dependencies:
-    ansi-escapes "^2.0.0"
+    ansi-escapes "^3.0.0"
     chalk "^2.0.0"
     cli-cursor "^2.1.0"
     cli-width "^2.0.0"
@@ -245,6 +245,10 @@ is-fullwidth-code-point@^2.0.0:
 is-promise@^2.1.0:
   version "2.1.0"
   resolved "https://upsidetravel.jfrog.io/upsidetravel/api/npm/npm-virtual/is-promise/-/is-promise-2.1.0.tgz#79a2a9ece7f096e80f36d2b2f3bc16c1ff4bf3fa"
+
+is-wsl@^1.1.0:
+  version "1.1.0"
+  resolved "https://upsidetravel.jfrog.io/upsidetravel/api/npm/npm-virtual/is-wsl/-/is-wsl-1.1.0.tgz#1f16e4aa22b04d1336b66188a66af3c600c3a66d"
 
 jschardet@^1.4.2:
   version "1.5.1"
@@ -317,6 +321,12 @@ onetime@^2.0.0:
   resolved "https://upsidetravel.jfrog.io/upsidetravel/api/npm/npm-virtual/onetime/-/onetime-2.0.1.tgz#067428230fd67443b2794b22bba528b6867962d4"
   dependencies:
     mimic-fn "^1.0.0"
+
+opn@^5.1.0:
+  version "5.1.0"
+  resolved "https://upsidetravel.jfrog.io/upsidetravel/api/npm/npm-virtual/opn/-/opn-5.1.0.tgz#72ce2306a17dbea58ff1041853352b4a8fc77519"
+  dependencies:
+    is-wsl "^1.1.0"
 
 os-homedir@1.0.2:
   version "1.0.2"

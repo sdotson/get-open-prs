@@ -2,6 +2,7 @@
 const chalk = require('chalk');
 const moment = require('moment');
 const CLI = require('clui');
+const opn = require('opn');
 const Spinner = CLI.Spinner;
 const figlet = require('figlet');
 const inquirer = require('inquirer');
@@ -12,7 +13,7 @@ console.log(figlet.textSync('get prs', { horizontalLayout: 'full' }))
 const buildPrsOutput = (prs) => {
   prs.forEach((pr) => {
     console.log(chalk.green(`${pr.title} (${pr.comments} comments)`));
-    console.log(pr.url);
+    console.log(pr.html_url);
     console.log(`Created by ${pr.username} ${moment(pr.created_at).fromNow()}`);
     console.log('Updated ' + moment(pr.updated_at).fromNow());
     console.log('-----');
@@ -32,7 +33,24 @@ const generateSummary = (prs) => {
   Object.keys(userCounts).forEach((user) => {
     console.log(`${user}: ${userCounts[user]} open prs`);
   });
+  console.log('-----');
+};
 
+const getPrQuestion = (prs) => {
+  const choices = prs.map((pr) => {
+    return {
+      name: `${pr.title} (${pr.username})`,
+      value: pr.html_url
+    };
+  });
+  return [
+    {
+      type: 'list',
+      name: 'prToOpen',
+      message: 'Which pr would you like to review?',
+      choices
+    }
+  ];
 };
 
 const status = new Spinner(`Getting open PRs for the team...`);
@@ -43,4 +61,9 @@ getPrs()
   console.log('\n');
   buildPrsOutput(prs);
   generateSummary(prs);
+  const questions = getPrQuestion(prs);
+  inquirer.prompt(questions)
+    .then((answers) => {
+      opn(answers.prToOpen, { wait: false} );
+    });
 });

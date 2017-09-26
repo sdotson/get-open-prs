@@ -18,8 +18,9 @@
     "config": "^1.26.2",
     "figlet": "^1.2.0",
     "github": "^11.0.0",
-    "inquirer": "^3.2.2",
+    "inquirer": "^3.3.0",
     "minimist": "^1.2.0",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "opn": "^5.1.0"
   }
 }

@@ -15,9 +15,9 @@ const getPrs = () => {
   })
   .then((prs) => {
     return prs.map((pr) => {
-      const { title, user, created_at, updated_at, url, comments } = pr;
+      const { title, user, created_at, updated_at, html_url, comments } = pr;
       const username = user.login;
-      return { title, username, created_at, updated_at, url, comments };
+      return { title, username, created_at, updated_at, html_url, comments };
     });
   });
 };
