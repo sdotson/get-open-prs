@@ -48,7 +48,7 @@ const getPrQuestion = (prs) => {
       type: 'list',
       name: 'prToOpen',
       message: 'Which pr would you like to review?',
-      choices
+      choices: [...choices, 'none']
     }
   ];
 };
@@ -64,6 +64,8 @@ getPrs()
   const questions = getPrQuestion(prs);
   inquirer.prompt(questions)
     .then((answers) => {
-      opn(answers.prToOpen, { wait: false} );
+      if (!answers.prToOpen !== 'none') {
+        opn(answers.prToOpen, { wait: false} );
+      }
     });
 });
