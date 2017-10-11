@@ -2,7 +2,6 @@
 const GitHubApi = require('github');
 const github = new GitHubApi();
 const config = require('config');
-const moment = require('moment');
 const team = require('./team.json');
 
 const getPrs = () => {
@@ -11,13 +10,6 @@ const getPrs = () => {
   .then((res) => {
     return res.data.filter((issue) => {
       return team.includes(issue.user.login) && issue.pull_request;
-    });
-  })
-  .then((prs) => {
-    return prs.map((pr) => {
-      const { title, user, created_at, updated_at, html_url, comments } = pr;
-      const username = user.login;
-      return { title, username, created_at, updated_at, html_url, comments };
     });
   });
 };
