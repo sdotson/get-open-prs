@@ -53,6 +53,32 @@ const getPrQuestion = (prs) => {
   ];
 };
 
+const askPrQuestion = (prQuestion) => {
+  return inquirer.prompt(prQuestion)
+    .then((answers) => {
+      if (!answers.prToOpen !== 'none') {
+        opn(answers.prToOpen, { wait: false} );
+        askContinueQuestion(prQuestion);
+      }
+    });
+};
+
+const askContinueQuestion = (prQuestion) => {
+  return inquirer.prompt([
+    {
+      type: 'confirm',
+      name: 'continue',
+      message: 'Would you like to review other outstanding PRs?',
+      default: true
+    }
+  ])
+    .then((answers) => {
+      if (answers.continue) {
+        askPrQuestion(prQuestion);
+      }
+    });
+};
+
 const status = new Spinner(`Getting open PRs for the team...`);
 status.start();
 getPrs()
@@ -61,11 +87,6 @@ getPrs()
   console.log('\n');
   buildPrsOutput(prs);
   generateSummary(prs);
-  const questions = getPrQuestion(prs);
-  inquirer.prompt(questions)
-    .then((answers) => {
-      if (!answers.prToOpen !== 'none') {
-        opn(answers.prToOpen, { wait: false} );
-      }
-    });
+  const prQuestion = getPrQuestion(prs);
+  askPrQuestion(prQuestion);
 });
