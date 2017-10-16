@@ -1,21 +1,15 @@
-#!/usr/bin/env node
-const CLI = require('clui');
-const Spinner = CLI.Spinner;
-const figlet = require('figlet');
 const getPrs = require('./getPrs');
 const userPrompts = require('./userPrompts');
 const output = require('./output');
+const config = require('./config');
+const validate = require('./validate');
 
-console.log(figlet.textSync('get prs', { horizontalLayout: 'full' }));
+const team = config.github.team;
 
-const status = new Spinner(`Getting open PRs for the team...`);
-status.start();
-getPrs()
-.then((prs) => {
-  status.stop();
-  console.log('\n');
-  output.generatePrsList(prs);
-  output.generateSummary(prs);
-  const prQuestion = userPrompts.getPrQuestion(prs);
-  userPrompts.askPrQuestion(prQuestion);
-});
+const getTeamPrs = (team) => {
+  const valid = validate(team);
+  if (!valid) return false;
+  return getPrs(team);
+};
+
+module.exports = getTeamPrs;

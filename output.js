@@ -11,15 +11,7 @@ const generatePrsList = (prs) => {
   });
 };
 
-const generateSummary = (prs) => {
-  const userCounts = prs.reduce((acc, pr) => {
-    if (acc[pr.user.login]) {
-      acc[pr.user.login] = acc[pr.user.login] + 1;
-    } else {
-      acc[pr.user.login] = 1;
-    }
-    return acc;
-  }, {});
+const generateSummary = (userCounts) => {
   console.log(chalk.green('Summary'));
   Object.keys(userCounts).forEach((user) => {
     console.log(`${user}: ${userCounts[user]} open prs`);
