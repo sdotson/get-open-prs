@@ -1,7 +1,4 @@
 const getPrs = require('./getPrs');
-const userPrompts = require('./userPrompts');
-const output = require('./output');
-const config = require('./config');
 const validate = require('./validate');
 
 const team = config.github.team;
