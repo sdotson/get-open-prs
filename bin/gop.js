@@ -8,9 +8,10 @@ const output = require('../output');
 const config = require('../config');
 const validate = require('../validate');
 const team = config.github.team;
+const valid = validate(team);
 
 console.log(figlet.textSync('get prs', { horizontalLayout: 'full' }));
-const valid = validate(team);
+
 if (valid) {
   const status = new Spinner(`Getting open PRs for the team...`);
   status.start();
