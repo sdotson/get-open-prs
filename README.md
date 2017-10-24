@@ -1,3 +1,5 @@
+# get-open-prs
+![status](https://circleci.com/gh/:owner/:repo.svg?style=shield&circle-token=:circle-token)
 # Installation
 - Put the github usernames of your team members as an array of strings in the `team.json` file.
 - Set an environment variable called `GITHUB_TOKEN` with your github api token.
