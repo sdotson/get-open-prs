@@ -1,4 +1,4 @@
-const team = process.env.GITHUB_TEAM.split(' ');
+const team = process.env.GITHUB_TEAM && process.env.GITHUB_TEAM.split(' ');
 
 module.exports = {
   github: {
