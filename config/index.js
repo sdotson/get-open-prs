@@ -1,6 +1,8 @@
+const team = process.env.GITHUB_TEAM.split(' ');
+
 module.exports = {
   github: {
-    team: require('./team.json'),
+    team: team,
     token: process.env.GITHUB_TOKEN
   }
 };

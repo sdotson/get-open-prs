@@ -8,7 +8,7 @@ const output = require('../output');
 const config = require('../config');
 const validate = require('../validate');
 const team = config.github.team;
-const valid = validate(team);
+const valid = validate();
 
 console.log(figlet.textSync('get prs', { horizontalLayout: 'full' }));
 
