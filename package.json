@@ -15,6 +15,7 @@
   },
   "author": "sdotson",
   "license": "ISC",
+  "keywords": ["github", "command line", "pull requests"],
   "dependencies": {
     "axios": "^0.16.2",
     "chalk": "^2.1.0",
