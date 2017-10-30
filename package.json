@@ -1,6 +1,6 @@
 {
   "name": "get-open-prs",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Get open PRs for your team",
   "main": "index.js",
   "repository": {
