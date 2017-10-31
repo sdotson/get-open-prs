@@ -1,6 +1,6 @@
 {
   "name": "get-open-prs",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Get open PRs for your team",
   "main": "index.js",
   "repository": {
@@ -15,7 +15,11 @@
   },
   "author": "sdotson",
   "license": "ISC",
-  "keywords": ["github", "command line", "pull requests"],
+  "keywords": [
+    "github",
+    "command line",
+    "pull requests"
+  ],
   "dependencies": {
     "axios": "^0.16.2",
     "chalk": "^2.1.0",
@@ -24,9 +28,9 @@
     "figlet": "^1.2.0",
     "github": "^11.0.0",
     "inquirer": "^3.3.0",
-    "minimist": "^1.2.0",
     "moment": "^2.18.1",
-    "opn": "^5.1.0"
+    "opn": "^5.1.0",
+    "yargs": "^10.0.3"
   },
   "devDependencies": {
     "chai": "^4.1.2",
