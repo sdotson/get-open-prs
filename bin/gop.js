@@ -9,6 +9,10 @@ const config = require('../config');
 const validate = require('../validate');
 const argv = require('yargs').argv;
 const valid = validate();
+const updateNotifier = require('update-notifier');
+const pkg = require('../package.json');
+
+updateNotifier({pkg}).notify();
 
 console.log(figlet.textSync('get prs', { horizontalLayout: 'full' }));
 
