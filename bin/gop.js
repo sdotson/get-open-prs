@@ -28,7 +28,7 @@ if (valid) {
     if (argv.v) {
       output.generatePrsList(prsData.prs);
     }
-    output.generateSummary(prsData.userCounts);
+    output.generateSummary(prsData);
     const prQuestion = userPrompts.getPrQuestion(prsData.prs);
     userPrompts.askPrQuestion(prQuestion);
   });

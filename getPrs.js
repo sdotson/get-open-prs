@@ -10,15 +10,14 @@ const getPrs = (team) => {
     const prs = res.data.filter((issue) => {
       return team.includes(issue.user.login) && issue.pull_request;
     });
-    const userCounts = prs.reduce((acc, pr) => {
-      if (acc[pr.user.login]) {
-        acc[pr.user.login] = acc[pr.user.login] + 1;
-      } else {
-        acc[pr.user.login] = 1;
-      }
-      return acc;
-    }, {});
-    return { prs, userCounts };
+
+    let userCounts = {};
+    
+    team.forEach((member) => {
+      userCounts[member] = prs.filter((pr) => pr.user.login === member).length;
+    });
+
+    return { prs, userCounts, users: team };
   });
 };
 

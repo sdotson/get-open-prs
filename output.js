@@ -11,9 +11,9 @@ const generatePrsList = (prs) => {
   });
 };
 
-const generateSummary = (userCounts) => {
+const generateSummary = ({ userCounts, users }) => {
   console.log(chalk.green('Summary'));
-  Object.keys(userCounts).forEach((user) => {
+  users.forEach((user) => {
     console.log(`${user}: ${userCounts[user]} open prs`);
   });
   console.log('-----');
