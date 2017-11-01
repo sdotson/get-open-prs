@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const CLI = require('clui');
+const chalk = require('chalk');
 const Spinner = CLI.Spinner;
 const figlet = require('figlet');
 const getPrs = require('../getPrs');
@@ -25,11 +26,18 @@ if (valid) {
   .then((prsData) => {
     status.stop();
     console.log('\n');
+
     if (argv.v) {
       output.generatePrsList(prsData.prs);
     }
+
     output.generateSummary(prsData);
-    const prQuestion = userPrompts.getPrQuestion(prsData.prs);
-    userPrompts.askPrQuestion(prQuestion);
+
+    if (prsData.prs.length) {
+      const prQuestion = userPrompts.getPrQuestion(prsData.prs);
+      userPrompts.askPrQuestion(prQuestion);
+    } else {
+      console.log(chalk.green('There are no open prs to review. Congratulations!'))
+    }
   });
 }
