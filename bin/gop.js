@@ -39,5 +39,10 @@ if (valid) {
     } else {
       console.log(chalk.green('There are no open prs to review. Congratulations!'))
     }
-  });
+  })
+  .catch((err) => {
+    status.stop();
+    console.log(err);
+    console.log(chalk.red('Could not connect. Please check your config and credentails'));
+  })
 }
