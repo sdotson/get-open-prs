@@ -1,6 +1,6 @@
-const config = require('./config');
-const githubToken = config.github.token;
-const githubTeam = config.github.team;
+const config = require('config');
+const githubToken = config.get('github.token');
+const githubTeam = config.get('github.team');
 
 module.exports = () => {
   const errors = [];

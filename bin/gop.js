@@ -6,7 +6,7 @@ const figlet = require('figlet');
 const getPrs = require('../getPrs');
 const userPrompts = require('../userPrompts');
 const output = require('../output');
-const config = require('../config');
+const config = require('config');
 const validate = require('../validate');
 const argv = require('yargs').argv;
 const valid = validate();
@@ -17,7 +17,7 @@ updateNotifier({pkg}).notify();
 
 console.log(figlet.textSync('get prs', { horizontalLayout: 'full' }));
 
-const team = argv.t ? argv.t.split(' ') : config.github.team;
+const team = argv.t ? argv.t.split(' ') : config.get('github.team').split(' ');
 
 if (valid) {
   const status = new Spinner(`Getting open PRs for the team...`);
