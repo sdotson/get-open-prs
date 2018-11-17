@@ -43,6 +43,6 @@ if (valid) {
   .catch((err) => {
     status.stop();
     console.log(err);
-    console.log(chalk.red('Could not connect. Please check your config and credentails'));
+    console.log(chalk.red('Could not connect. Please check your config and credentials'));
   })
 }
