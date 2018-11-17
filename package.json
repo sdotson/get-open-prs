@@ -8,7 +8,7 @@
     "url": "https://github.com/sdotson/get-open-prs.git"
   },
   "scripts": {
-    "test": "mocha tests/**/*.test.js"
+    "test": "NODE_ENV=test mocha --exit tests/**/*.test.js"
   },
   "bin": {
     "gop": "./bin/gop.js"
