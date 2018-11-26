@@ -1,22 +1,22 @@
 module.exports = {
   allPrOneStranger: [
     {
-      user: {
+      author: {
         login: 'person1'
       },
       pull_request: true
     }, {
-      user: {
+      author: {
         login: 'person2'
       },
       pull_request: true
     }, {
-      user: {
+      author: {
         login: 'person2'
       },
       pull_request: true
     }, {
-      user: {
+      author: {
         login: 'stranger'
       },
       pull_request: true
