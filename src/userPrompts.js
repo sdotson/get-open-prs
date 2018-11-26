@@ -4,8 +4,8 @@ const inquirer = require('inquirer');
 const getPrQuestion = (prs) => {
   const choices = prs.map((pr) => {
     return {
-      name: `${pr.title} (${pr.user.login})`,
-      value: pr.html_url
+      name: `${pr.title} (${pr.author.login})`,
+      value: pr.url
     };
   });
   return [

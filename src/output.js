@@ -3,10 +3,10 @@ const moment = require('moment');
 
 const generatePrsList = (prs) => {
   prs.forEach((pr) => {
-    console.log(chalk.green(`${pr.title} (${pr.comments} comments)`));
-    console.log(pr.html_url);
-    console.log(`Created by ${pr.user.login} ${moment(pr.created_at).fromNow()}`);
-    console.log('Updated ' + moment(pr.updated_at).fromNow());
+    console.log(chalk.green(`${pr.title} (${pr.comments.totalCount} comments)`));
+    console.log(pr.url);
+    console.log(`Created by ${pr.author.login} ${moment(pr.createdAt).fromNow()}`);
+    console.log('Updated ' + moment(pr.updatedAt).fromNow());
     console.log('-----');
   });
 };

@@ -1,5 +1,5 @@
-const getPrs = require('./getPrs');
-const validate = require('./validate');
+const getPrs = require('./src/getPrs');
+const validate = require('./src/validate');
 const config = require('config');
 
 const team = config.get('github.team').split(' ');
