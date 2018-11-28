@@ -9,12 +9,13 @@ const getPrCountsByUser = require('./getPrCountsByUser');
 const userPrompts = require('./userPrompts');
 const validate = require('./validate');
 const output = require('./output');
+const printToTerminal = require('./printToTerminal');
 
 const valid = validate();
 const githubService = require('./services/github');
 
 const getOpenPrs = async () => {
-  console.log(figlet.textSync('get prs', { horizontalLayout: 'full' }));
+  printToTerminal([figlet.textSync('get prs', { horizontalLayout: 'full' })]);
   
   const team = argv.t ? argv.t.split(' ') : config.get('github.team').split(' ');
   const status = new Spinner(`Getting open PRs for the team...`);
@@ -26,25 +27,29 @@ const getOpenPrs = async () => {
       const openPrs = await githubService.getPrs(team);
       const prCountsByUser = getPrCountsByUser(team, openPrs);
       status.stop();
-      console.log('\n');
+      printToTerminal(['\n']);
   
       if (argv.v) {
-        output.generatePrsList(openPrs);
+        const detailedPrsList = output.generatePrsList(openPrs);
+        printToTerminal(detailedPrsList);
       }
 
-      output.generateSummary({ userCounts: prCountsByUser, users: team });
+      const summary = output.generateSummary({ userCounts: prCountsByUser, users: team });
+      printToTerminal(summary);
 
       if (openPrs.length) {
         const prQuestion = userPrompts.getPrQuestion(openPrs);
         userPrompts.askPrQuestion(prQuestion);
       } else {
-        console.log(chalk.green('There are no open prs to review. Congratulations!'))
+        printToTerminal([chalk.green('There are no open prs to review. Congratulations!')]);
       }
     }
   } catch (err) {
     status.stop();
-    console.log(err);
-    console.log(chalk.red('Could not connect. Please check your config and credentials'));
+    printToTerminal([
+      err,
+      chalk.red('Could not connect. Please check your config and credentials')
+    ]);
   }
 };
 
