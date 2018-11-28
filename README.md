@@ -4,7 +4,12 @@
 ## Installation
 - Set an environment variable called `GITHUB_TEAM` with the Github usernames of your team members enclosed in a string and separated by spaces (e.g. `GITHUB_TEAM="user1 user2 user3 user4"`).
 - Set an environment variable called `GITHUB_TOKEN` with your github api token.
-- `npm install -g` to install globally and to be able to use the keyboard shortcut anywhere.
+
+### NPM
+`npm install -g get-open-prs` to install globally and to be able to use the keyboard shortcut anywhere.
+
+### Yarn
+`yarn add get-open-prs --global` to install globally and use the shortcut anywhere. See https://yarnpkg.com/lang/en/docs/cli/global/ for more details.
 
 ## Instructions
 - You can get the current open prs for your team by typing `gop` in any directory.
