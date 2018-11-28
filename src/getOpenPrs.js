@@ -1,15 +1,17 @@
-#!/usr/bin/env node
 const CLI = require('clui');
 const chalk = require('chalk');
 const Spinner = CLI.Spinner;
 const figlet = require('figlet');
-const getPrs = require('./getPrs');
-const userPrompts = require('./userPrompts');
-const output = require('./output');
 const config = require('config');
-const validate = require('./validate');
 const argv = require('yargs').argv;
+
+const getPrCountsByUser = require('./getPrCountsByUser');
+const userPrompts = require('./userPrompts');
+const validate = require('./validate');
+const output = require('./output');
+
 const valid = validate();
+const githubService = require('./services/github');
 
 const getOpenPrs = async () => {
   console.log(figlet.textSync('get prs', { horizontalLayout: 'full' }));
@@ -20,19 +22,20 @@ const getOpenPrs = async () => {
   try {
     if (valid) {
       status.start();
-    
-      const prsData = await getPrs(team);
+      
+      const openPrs = await githubService.getPrs(team);
+      const prCountsByUser = getPrCountsByUser(team, openPrs);
       status.stop();
       console.log('\n');
   
       if (argv.v) {
-        output.generatePrsList(prsData.prs);
+        output.generatePrsList(openPrs);
       }
-  
-      output.generateSummary(prsData);
 
-      if (prsData.prs.length) {
-        const prQuestion = userPrompts.getPrQuestion(prsData.prs);
+      output.generateSummary({ userCounts: prCountsByUser, users: team });
+
+      if (openPrs.length) {
+        const prQuestion = userPrompts.getPrQuestion(openPrs);
         userPrompts.askPrQuestion(prQuestion);
       } else {
         console.log(chalk.green('There are no open prs to review. Congratulations!'))
