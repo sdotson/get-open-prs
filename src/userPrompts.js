@@ -21,7 +21,7 @@ const getPrQuestion = (prs) => {
 const askPrQuestion = (prQuestion) => {
   return inquirer.prompt(prQuestion)
     .then((answers) => {
-      if (!answers.prToOpen !== 'none') {
+      if (answers.prToOpen !== 'none') {
         opn(answers.prToOpen, { wait: false} );
         askContinueQuestion(prQuestion);
       }
