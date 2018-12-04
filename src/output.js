@@ -1,9 +1,9 @@
 const chalk = require('chalk');
 const moment = require('moment');
-
+// eslint-disable-next-line
 const generatePrsList = prs => [].concat.apply(
   [],
-  ...prs.map(pr => [
+  prs.map(pr => [
     chalk.green(`${pr.title} (${pr.comments.totalCount} comments)`),
     pr.url,
     `Created by ${pr.author.login} ${moment(pr.createdAt).fromNow()}`,

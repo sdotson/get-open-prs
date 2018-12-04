@@ -2,7 +2,8 @@ const { Spinner } = require('clui');
 const chalk = require('chalk');
 
 const figlet = require('figlet');
-const { argv } = require('yargs');
+// eslint-disable-next-line
+const argv = require('yargs').argv;
 
 const getPrCountsByUser = require('./getPrCountsByUser');
 const userPrompts = require('./userPrompts');

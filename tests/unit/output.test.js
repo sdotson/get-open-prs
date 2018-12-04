@@ -5,10 +5,6 @@ const output = require('../../src/output');
 const openPrsFixture = require('../fixtures/pullRequests.json');
 
 describe('output.generateSummary()', () => {
-  beforeEach(() => {
-    sinon.useFakeTimers(new Date(2018, 12, 15).getTime());
-  });
-
   it('should work properly', () => {
     const users = ['awesomo', 'jesuschrist', 'dumbo', 'goofy', 'somebody'];
     const userCounts = {
@@ -35,6 +31,8 @@ describe('output.generateSummary()', () => {
 
 describe('output.generatePrsList()', () => {
   it('should work properly', () => {
+    sinon.useFakeTimers(new Date(2018, 12, 15).getTime());
+
     const actual = output.generatePrsList(openPrsFixture);
     const expected = [
       '\u001b[32madd graceful shutdown and xray (0 comments)\u001b[39m',
@@ -83,7 +81,6 @@ describe('output.generatePrsList()', () => {
       'Updated a month ago',
       '-----',
     ];
-
     assert.deepEqual(expected, actual);
   });
 });
