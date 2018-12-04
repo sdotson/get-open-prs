@@ -1,5 +1,5 @@
 'use strict';
-const config = require('config');
+const config = require('./config');
 const chalk = require('chalk');
 const { GraphQLClient } = require('graphql-request');
 const gql = require('graphql-tag');
@@ -8,7 +8,7 @@ const GITHUB_API_URL = 'https://api.github.com/graphql';
 
 const graphqlClient = new GraphQLClient(GITHUB_API_URL, {
   headers: {
-    'Authorization': `bearer ${config.get('github.token')}`
+    'Authorization': `bearer ${config.github.token}`
   }
 });
 

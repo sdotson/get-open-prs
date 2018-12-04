@@ -2,7 +2,6 @@ const CLI = require('clui');
 const chalk = require('chalk');
 const Spinner = CLI.Spinner;
 const figlet = require('figlet');
-const config = require('config');
 const argv = require('yargs').argv;
 
 const getPrCountsByUser = require('./getPrCountsByUser');
@@ -13,11 +12,12 @@ const printToTerminal = require('./printToTerminal');
 
 const valid = validate();
 const githubService = require('./services/github');
+const config = require('./services/config');
+const githubTeam = config.github.team;
 
 const getOpenPrs = async () => {
   printToTerminal([figlet.textSync('get prs', { horizontalLayout: 'full' })]);
-  
-  const team = argv.t ? argv.t.split(' ') : config.get('github.team').split(' ');
+  const team = argv.t ? argv.t.split(' ') : config.github.team.split(' ');
   const status = new Spinner(`Getting open PRs for the team...`);
 
   try {
