@@ -1,8 +1,8 @@
-const CLI = require('clui');
+const { Spinner } = require('clui');
 const chalk = require('chalk');
-const Spinner = CLI.Spinner;
+
 const figlet = require('figlet');
-const argv = require('yargs').argv;
+const { argv } = require('yargs');
 
 const getPrCountsByUser = require('./getPrCountsByUser');
 const userPrompts = require('./userPrompts');
@@ -13,22 +13,21 @@ const printToTerminal = require('./printToTerminal');
 const valid = validate();
 const githubService = require('./services/github');
 const config = require('./services/config');
-const githubTeam = config.github.team;
 
 const getOpenPrs = async () => {
   printToTerminal([figlet.textSync('get prs', { horizontalLayout: 'full' })]);
   const team = argv.t ? argv.t.split(' ') : config.github.team.split(' ');
-  const status = new Spinner(`Getting open PRs for the team...`);
+  const status = new Spinner('Getting open PRs for the team...');
 
   try {
     if (valid) {
       status.start();
-      
+
       const openPrs = await githubService.getPrs(team);
       const prCountsByUser = getPrCountsByUser(team, openPrs);
       status.stop();
       printToTerminal(['\n']);
-  
+
       if (argv.v) {
         const detailedPrsList = output.generatePrsList(openPrs);
         printToTerminal(detailedPrsList);
@@ -48,7 +47,7 @@ const getOpenPrs = async () => {
     status.stop();
     printToTerminal([
       err,
-      chalk.red('Could not connect. Please check your config and credentials')
+      chalk.red('Could not connect. Please check your config and credentials'),
     ]);
   }
 };

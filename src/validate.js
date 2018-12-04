@@ -1,4 +1,5 @@
 const config = require('./services/config');
+
 const githubToken = config.github.token;
 const githubTeam = config.github.team;
 
@@ -12,4 +13,4 @@ module.exports = () => {
   }
   console.log(errors.join('\n'));
   return githubToken && githubTeam;
-}
+};

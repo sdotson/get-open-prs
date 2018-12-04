@@ -1,0 +1,7 @@
+
+.idea/
+.nyc_output/
+coverage/
+models/
+node_modules/
+tests/

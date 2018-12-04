@@ -6,8 +6,8 @@ const openPrsFixture = require('../fixtures/pullRequests.json');
 
 describe('output.generateSummary()', () => {
   beforeEach(() => {
-    sinon.useFakeTimers(new Date(2018,12,15).getTime());
-  })
+    sinon.useFakeTimers(new Date(2018, 12, 15).getTime());
+  });
 
   it('should work properly', () => {
     const users = ['awesomo', 'jesuschrist', 'dumbo', 'goofy', 'somebody'];
@@ -16,7 +16,7 @@ describe('output.generateSummary()', () => {
       dumbo: 1,
       goofy: 3,
       jesuschrist: 1,
-      somebody: 0
+      somebody: 0,
     };
     const actual = output.generateSummary({ userCounts, users });
     const expected = [
@@ -26,9 +26,9 @@ describe('output.generateSummary()', () => {
       'dumbo: 1 open prs',
       'goofy: 3 open prs',
       'somebody: 0 open prs',
-      '-----'
+      '-----',
     ];
-    
+
     assert.deepEqual(expected, actual);
   });
 });
@@ -83,7 +83,7 @@ describe('output.generatePrsList()', () => {
       'Updated a month ago',
       '-----',
     ];
-    
+
     assert.deepEqual(expected, actual);
   });
 });

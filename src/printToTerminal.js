@@ -1,7 +1,5 @@
-const chalk = require('chalk');
-
 const printToTerminal = (linesToPrint) => {
-  linesToPrint.forEach(line => {
+  linesToPrint.forEach((line) => {
     console.log(line);
   });
 };
