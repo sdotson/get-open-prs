@@ -1,0 +1,119 @@
+[
+    {
+        "title": "add graceful shutdown and xray",
+        "comments": {
+            "totalCount": 0
+        },
+        "body": "",
+        "url": "https://github.com/fakeOrg/jimi-hendrix-experience-service/pull/95",
+        "author": {
+            "login": "awesomo"
+        },
+        "updatedAt": "2018-06-19T20:20:18Z",
+        "createdAt": "2018-06-19T20:20:18Z"
+    },
+    {
+        "title": "Remove when we update the confirmationEmailAddress",
+        "comments": {
+            "totalCount": 0
+        },
+        "body": "# [COR-XXXX](https://fakeOrg.atlassian.net/browse/COR-XXXX)\r\n> Please be sure to add a brief summary in the PR title.\r\n\r\n### Code Details\r\n* Describe actual changes made to code\r\n",
+        "url": "https://github.com/fakeOrg/jimi-hendrix-worker/pull/43",
+        "author": {
+            "login": "awesomo"
+        },
+        "updatedAt": "2018-10-17T16:00:34Z",
+        "createdAt": "2018-08-02T12:44:35Z"
+    },
+    {
+        "title": "Add by tripId endpoint",
+        "comments": {
+            "totalCount": 0
+        },
+        "body": "# [COR-XXXX](https://fakeOrg.atlassian.net/browse/COR-XXXX)\r\n> Please be sure to add a brief summary in the PR title.\r\n\r\n### Code Details\r\n* Describe actual changes made to code\r\n",
+        "url": "https://github.com/fakeOrg/awesome-service/pull/7",
+        "author": {
+            "login": "awesomo"
+        },
+        "updatedAt": "2018-10-19T13:11:36Z",
+        "createdAt": "2018-10-19T01:56:10Z"
+    },
+    {
+        "title": "Add ability to view a trip via tripId",
+        "comments": {
+            "totalCount": 0
+        },
+        "body": "# [COR-XXXX](https://fakeOrg.atlassian.net/browse/COR-XXXX)\r\n> We'll need this PR merged first: https://github.com/fakeOrgawesome-service/pull/7\r\n\r\n### what's missing\r\n- [x] add trip name\r\n- [ ] add better way to access your trip without using query params\r\n- [ ] add more styling for trip\r\n- [ ] add marker pop ups (the data's there in the geoJSON)\r\n- [ ] smooth out the interactions with the map\r\n- [ ] figure out how to differentiate the outbound trip vs the return trip\r\n\r\n### How it works\r\nnavigate to `http://localhost:8080/visual-calendar?tripId=67775?token=43411956-4298-428b-9dbc-400f5a1a8d97&userId=7731`\r\nyou need a valid tripId, calendar token and userId!\r\n\r\nand you'll see a map like below!\r\nthat's a trip from New York to Minnesota\r\n### Screenshots\r\n<img width=\"1552\" alt=\"screen shot 2018-10-19 at 12 10 05 am\" src=\"https://user-images.githubusercontent.com/1355326/47197315-7684af00-d333-11e8-9b20-ed43d4cc66eb.png\">\r\n",
+        "url": "https://github.com/fakeOrg/best-service/pull/95",
+        "author": {
+            "login": "awesomo"
+        },
+        "updatedAt": "2018-10-19T13:13:16Z",
+        "createdAt": "2018-10-19T03:51:15Z"
+    },
+    {
+        "title": "COR-28059: Add v3 rooms integration tests",
+        "comments": {
+            "totalCount": 0
+        },
+        "body": "# [COR-28059](https://fakeOrg.atlassian.net/browse/COR-28059)\r\n\r\nFeel free to share comments on organization and approach. We don't want this to be tedious to make sense of or update in the future.\r\n\r\n",
+        "url": "https://github.com/fakeOrg/god-service/pull/139",
+        "author": {
+            "login": "jesuschrist"
+        },
+        "updatedAt": "2018-12-04T16:14:04Z",
+        "createdAt": "2018-12-04T16:14:03Z"
+    },
+    {
+        "title": "Update room-matching-py lib to version 1.2.0",
+        "comments": {
+            "totalCount": 0
+        },
+        "body": "Version 1.2.0 has a change to prevent empty tokenized bed type descriptions\r\nsee: https://github.com/fakeOrg/room-matching-py/pull/5",
+        "url": "https://github.com/fakeOrg/db-hotel-properties/pull/37",
+        "author": {
+            "login": "dumbo"
+        },
+        "updatedAt": "2018-12-04T16:43:07Z",
+        "createdAt": "2018-12-03T21:03:17Z"
+    },
+    {
+        "title": "Add settle effect combinator",
+        "comments": {
+            "totalCount": 27
+        },
+        "body": "This effect combinator will run effects in parallel and settle all effects before returning.\r\n\r\nThis is something that would be very useful for us, and I believe could be useful for others as well. When calling effects to fetch data in parallel, you may not want one failure to cause the other effects to be cancelled.\r\n\r\nI was not sure what the desired response object should look like, so I left it simple and am open to changing it if there is something that would be better or more useful. While this is similar to [promise settling](http://bluebirdjs.com/docs/api/reflect.html), using the [PromiseInspection](http://bluebirdjs.com/docs/api/promiseinspection.html) interface didn't seem appropriate.\r\n\r\nIf you agree this is a useful effect combinator, I will write the docs for it. I didn't want to spend that time until this proposal was accepted and the response object format was agreed upon.\r\n\r\nBTW - This is a great library, thank you for all your hard work!\r\n\r\ncc - @spaintrain",
+        "url": "https://github.com/redux-saga/redux-saga/pull/759",
+        "author": {
+            "login": "goofy"
+        },
+        "updatedAt": "2017-08-03T10:01:52Z",
+        "createdAt": "2017-01-12T17:15:55Z"
+    },
+    {
+        "title": "ci testing ",
+        "comments": {
+            "totalCount": 0
+        },
+        "body": "",
+        "url": "https://github.com/goofy/finances-react/pull/1",
+        "author": {
+            "login": "goofy"
+        },
+        "updatedAt": "2017-09-07T02:40:01Z",
+        "createdAt": "2017-09-07T02:32:32Z"
+    },
+    {
+        "title": "Use ~ for node engine version",
+        "comments": {
+            "totalCount": 0
+        },
+        "body": "Using node 10 gives weird errors, that aren't clear, pin to 8.10 for now\r\n\r\n",
+        "url": "https://github.com/fakeOrg/service-experience-service/pull/478",
+        "author": {
+            "login": "goofy"
+        },
+        "updatedAt": "2018-12-04T16:46:50Z",
+        "createdAt": "2018-12-04T16:38:24Z"
+    }
+]
