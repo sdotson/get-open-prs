@@ -9,7 +9,7 @@ const generatePrsList = prs => [].concat.apply(
     `Created by ${pr.author.login} ${moment(pr.createdAt).fromNow()}`,
     `Updated ${moment(pr.updatedAt).fromNow()}`,
     '-----',
-  ]),
+  ])
 );
 
 const generateSummary = ({ userCounts, users }) => [
