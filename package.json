@@ -1,6 +1,6 @@
 {
   "name": "get-open-prs",
-  "version": "1.3.17",
+  "version": "1.3.18",
   "description": "Get open PRs for your team",
   "main": "index.js",
   "repository": {
@@ -17,6 +17,9 @@
   },
   "author": "sdotson",
   "license": "MIT",
+  "engines": {
+    "node": ">=8.9"
+  },
   "keywords": [
     "github",
     "command line",
