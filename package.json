@@ -18,7 +18,7 @@
   "author": "sdotson",
   "license": "MIT",
   "engines": {
-    "node": ">=8.10"
+    "node": ">=8.12.0"
   },
   "keywords": [
     "github",
