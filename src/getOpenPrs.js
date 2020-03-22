@@ -1,48 +1,82 @@
-const { Spinner } = require('clui');
+const Conf = require('conf');
 const chalk = require('chalk');
-
 const figlet = require('figlet');
-// eslint-disable-next-line
-const argv = require('yargs').argv;
+const { Spinner } = require('clui');
 
+const { argv } = require('yargs').options({
+  config: {
+    alias: 'c',
+    describe: 'Configure and save Github token and usernames'
+  },
+  token: {
+    alias: 't',
+    describe: 'Pass in Github token'
+  },
+  usernames: {
+    alias: 'u',
+    describe: 'Pass in Github usernames'
+  },
+  verbose: {
+    alias: 'v',
+    describe: 'Print out verbose results for pull requests',
+  }
+});
+
+const configurationPrompts = require('./configurationPrompts');
+const githubService = require('./services/github');
 const getPrCountsByUser = require('./getPrCountsByUser');
-const userPrompts = require('./userPrompts');
-const validate = require('./validate');
 const output = require('./output');
 const printToTerminal = require('./printToTerminal');
+const userPrompts = require('./userPrompts');
 
-const valid = validate();
-const githubService = require('./services/github');
-const config = require('./services/config');
+const config = new Conf();
 
 const getOpenPrs = async () => {
   printToTerminal([figlet.textSync('get prs', { horizontalLayout: 'full' })]);
-  const team = argv.t ? argv.t.split(' ') : config.github.team.split(' ');
+
+  if (argv.config) {
+    await configurationPrompts.configureGithubTeam();
+    await configurationPrompts.configureGithubToken();
+    return;
+  }
+
+  const githubTeam = argv.usernames || config.get('githubTeam');
+  const team = githubTeam && githubTeam.split(' ');
+  const githubToken = argv.token || config.get('githubToken');
+
+  if (!team || team.length === 0) {
+    console.log('A list of github usernames must be either passed in with --usernames or configured with --configure');
+    await configurationPrompts.configureGithubTeam();
+  }
+
+  if (!githubToken) {
+    console.log('A github token must be provided with --token or configured with --configure');
+    await configurationPrompts.configureGithubToken();
+  }
+
   const status = new Spinner('Getting open PRs for the team...');
 
   try {
-    if (valid) {
-      status.start();
+    status.start();
+    const openPrs = await githubService.getPrs(team);
+    const prCountsByUser = getPrCountsByUser(team, openPrs);
+    status.stop();
 
-      const openPrs = await githubService.getPrs(team);
-      const prCountsByUser = getPrCountsByUser(team, openPrs);
-      status.stop();
-      printToTerminal(['\n']);
+    printToTerminal(['\n']);
 
-      if (argv.v) {
-        const detailedPrsList = output.generatePrsList(openPrs);
-        printToTerminal(detailedPrsList);
-      }
+    if (argv.verbose) {
+      const detailedPrsList = output.generatePrsList(openPrs);
+      printToTerminal(detailedPrsList);
+    }
 
-      const summary = output.generateSummary({ userCounts: prCountsByUser, users: team });
-      printToTerminal(summary);
+    const summary = output.generateSummary({ userCounts: prCountsByUser, users: team });
+    printToTerminal(summary);
 
-      if (openPrs.length) {
-        const prQuestion = userPrompts.getPrQuestion(openPrs);
-        userPrompts.askPrQuestion(prQuestion);
-      } else {
-        printToTerminal([chalk.green('There are no open prs to review. Congratulations!')]);
-      }
+    if (openPrs.length) {
+      const prQuestion = userPrompts.getPrQuestion(openPrs);
+      userPrompts.askPrQuestion(prQuestion);
+    } else {
+      printToTerminal([chalk.green('There are no open prs to review. Congratulations!')]);
     }
   } catch (err) {
     status.stop();

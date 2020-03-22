@@ -1,6 +1,6 @@
 {
   "name": "get-open-prs",
-  "version": "1.3.19",
+  "version": "2.0.0",
   "description": "Get open PRs for your team",
   "main": "index.js",
   "repository": {
@@ -13,7 +13,7 @@
     "lint-fix": "eslint . --fix"
   },
   "bin": {
-    "gop": "./bin/gop.js"
+    "get-open-prs": "./bin/gop.js"
   },
   "author": "sdotson",
   "license": "MIT",
@@ -26,9 +26,9 @@
     "pull requests"
   ],
   "dependencies": {
-    "axios": "^0.16.2",
     "chalk": "^2.1.0",
     "clui": "^0.3.6",
+    "conf": "^6.2.1",
     "figlet": "^1.2.0",
     "global": "^4.3.2",
     "graphql": "^14.0.2",
