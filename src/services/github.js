@@ -1,22 +1,13 @@
 
 const chalk = require('chalk');
 const { GraphQLClient } = require('graphql-request');
-const Conf = require('conf');
-
-const config = new Conf({ projectName: 'get-open-prs' });
 
 const GITHUB_API_URL = 'https://api.github.com/graphql';
 
-const graphqlClient = new GraphQLClient(GITHUB_API_URL, {
-  headers: {
-    Authorization: `bearer ${config.get('githubToken')}`,
-  },
-});
-
-const getPrs = async (team) => {
+const getPrs = async (team, token) => {
   try {
     const res = await Promise.all(
-      team.map(getPrsByLogin),
+      team.map(username => getPrsByLogin(username, token)),
     );
     return Array.prototype.concat.apply([], res);
   } catch (err) {
@@ -25,7 +16,12 @@ const getPrs = async (team) => {
   return [];
 };
 
-const getPrsByLogin = async (login) => {
+const getPrsByLogin = async (login, token) => {
+  const graphqlClient = new GraphQLClient(GITHUB_API_URL, {
+    headers: {
+      Authorization: `bearer ${token}`,
+    },
+  });
   try {
     const query = `
     query {
@@ -54,6 +50,7 @@ const getPrsByLogin = async (login) => {
     const { user: { pullRequests: { edges } } } = await graphqlClient.request(query);
     return edges.map(edge => edge.node);
   } catch (err) {
+    console.log(err);
     console.log(chalk.red(`Could not retrieve pull requests for user ${login}`));
   }
   return [];

@@ -1,6 +1,6 @@
 {
   "name": "get-open-prs",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Get open PRs for your team",
   "main": "index.js",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/sdotson/get-open-prs.git"
   },
   "scripts": {
-    "test": "NODE_ENV=test mocha --exit tests/**/*.test.js",
+    "test": "NODE_ENV=test nyc mocha --exit tests/**/*.test.js",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
   },
@@ -45,6 +45,7 @@
     "eslint-plugin-import": "^2.14.0",
     "mocha": "^4.0.1",
     "mock-require": "^2.0.2",
+    "nyc": "^15.0.0",
     "sinon": "^7.1.1"
   }
 }

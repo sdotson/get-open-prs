@@ -1,9 +1,6 @@
-const Conf = require('conf');
 const inquirer = require('inquirer');
 
-const config = new Conf({ projectName: 'get-open-prs' });
-
-const configureGithubTeam = async () => {
+const configureGithubTeam = async (config) => {
   const { githubUsernames } = await inquirer.prompt([
     {
       type: 'input',
@@ -26,7 +23,7 @@ const configureGithubTeam = async () => {
   config.set('githubTeam', githubUsernames);
 };
 
-const configureGithubToken = async () => {
+const configureGithubToken = async (config) => {
   const { githubToken } = await inquirer.prompt([
     {
       type: 'input',
