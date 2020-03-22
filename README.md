@@ -10,9 +10,10 @@
 - After typing the `get-open-prs` command, a prompt will appear for you to select a specific pr to review. Once you hit enter, your default browser will open the pr.
 - You'll then be given the option to continue reviewing other prs.
 - Optionally, you can create an alias for `get-open-prs` if that's too many letters to type out. Simply edit `~/.bash_profile` or `~/.zprofile` (if you use zsh) and add the following:
+
 ```
 alias gop="get-open-prs"
-``
+```
 In the above, `gop` is the new shorter command. This could really be anything.
 
 ## Options
@@ -29,16 +30,14 @@ In the above, `gop` is the new shorter command. This could really be anything.
 ```
 get-open-prs
 ```
-
 ### Change token or usernames configuration
 ```
 get-open-prs --config
-```
 
+```
 ### Pass in usernames override
 ```
 get-open-prs --usernames user1 user2 user3 user4
 ```
-
 ## Screenshot
 ![screenshot](https://raw.githubusercontent.com/sdotson/get-open-prs/master/screenshot.png)
