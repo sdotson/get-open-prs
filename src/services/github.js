@@ -1,13 +1,15 @@
 
 const chalk = require('chalk');
 const { GraphQLClient } = require('graphql-request');
-const config = require('./config');
+const Conf = require('conf');
+
+const config = new Conf();
 
 const GITHUB_API_URL = 'https://api.github.com/graphql';
 
 const graphqlClient = new GraphQLClient(GITHUB_API_URL, {
   headers: {
-    Authorization: `bearer ${config.github.token}`,
+    Authorization: `bearer ${config.get('githubToken')}`,
   },
 });
 
@@ -27,7 +29,7 @@ const getPrsByLogin = async (login) => {
   try {
     const query = `
     query {
-      user(login: ${login}) {
+      user(login: "${login}") {
         pullRequests(last: 100, states:OPEN) {
           edges {
             cursor
