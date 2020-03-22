@@ -26,7 +26,6 @@
     "pull requests"
   ],
   "dependencies": {
-    "axios": "^0.16.2",
     "chalk": "^2.1.0",
     "clui": "^0.3.6",
     "conf": "^6.2.1",
