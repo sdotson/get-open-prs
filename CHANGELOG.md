@@ -1,5 +1,8 @@
 # CHANGE lOG
 
+## 2.0.3
+- README updates to mention the permissions needed for Github personal access token.
+
 ## 2.0.2
 - Refactored `getOpenPrs` to facilitate testing by dependency injection
 - Added `getOpenPrs` test
