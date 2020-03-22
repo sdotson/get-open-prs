@@ -30,10 +30,9 @@ In the above, `gop` is the new shorter command. This could really be anything.
 ```
 get-open-prs
 ```
-### Change token or usernames configuration
+### Update token or usernames default configuration
 ```
 get-open-prs --config
-
 ```
 ### Pass in usernames override
 ```
