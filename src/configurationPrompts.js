@@ -1,7 +1,7 @@
 const Conf = require('conf');
 const inquirer = require('inquirer');
 
-const config = new Conf();
+const config = new Conf({ projectName: 'get-open-prs' });
 
 const configureGithubTeam = async () => {
   const { githubUsernames } = await inquirer.prompt([

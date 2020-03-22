@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const { GraphQLClient } = require('graphql-request');
 const Conf = require('conf');
 
-const config = new Conf();
+const config = new Conf({ projectName: 'get-open-prs' });
 
 const GITHUB_API_URL = 'https://api.github.com/graphql';
 

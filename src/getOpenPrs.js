@@ -29,7 +29,7 @@ const output = require('./output');
 const printToTerminal = require('./printToTerminal');
 const userPrompts = require('./userPrompts');
 
-const config = new Conf();
+const config = new Conf({ projectName: 'get-open-prs' });
 
 const getOpenPrs = async () => {
   printToTerminal([figlet.textSync('get prs', { horizontalLayout: 'full' })]);
