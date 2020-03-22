@@ -3,7 +3,8 @@
 
 ## Installation
 1. `npm install -g get-open-prs` to install globally and to be able to use the keyboard shortcut anywhere.
-2. The first time you run `get-open-prs`, you'll be prompted to set a default list of Github usernames and your Github token. You'll be able to update this later by running `get-open-prs --config` or overriding with `--usernames` or `--token` command options detailed below.
+2. Get a Github personal access token [here](https://github.com/settings/tokens). You'll want the following permissions: `notifications, public_repo, read:org, read:packages, read:user`.
+3. The first time you run `get-open-prs`, you'll be prompted to set a default list of Github usernames and your Github personal access token. You'll be able to update this later by running `get-open-prs --config` or overriding with `--usernames` or `--token` command options detailed below.
 
 ## Instructions
 - You can get the current open prs for your team by typing `get-open-prs` in any directory.
