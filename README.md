@@ -9,6 +9,11 @@
 - You can get the current open prs for your team by typing `get-open-prs` in any directory.
 - After typing the `get-open-prs` command, a prompt will appear for you to select a specific pr to review. Once you hit enter, your default browser will open the pr.
 - You'll then be given the option to continue reviewing other prs.
+- Optionally, you can create an alias for `get-open-prs` if that's too many letters to type out. Simply edit `~/.bash_profile` or `~/.zprofile` (if you use zsh) and add the following:
+```
+alias gop="get-open-prs"
+``
+In the above, `gop` is the new shorter command. This could really be anything.
 
 ## Options
 |Option|Description|Default|Required|
