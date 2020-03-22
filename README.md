@@ -23,5 +23,22 @@ In the above, `gop` is the new shorter command. This could really be anything.
 |`-u, --usernames`|Usernames. Overrides any saved default usernames|` config or null`|`false`|
 |`-v, --verbose`|Verbose. Print out pull request details|`false`|`false`|
 
+## Examples
+
+### Use default github and usernames configuration and get all prs
+```
+get-open-prs
+```
+
+### Change token or usernames configuration
+```
+get-open-prs --config
+```
+
+### Pass in usernames override
+```
+get-open-prs --usernames user1 user2 user3 user4
+```
+
 ## Screenshot
 ![screenshot](https://raw.githubusercontent.com/sdotson/get-open-prs/master/screenshot.png)
