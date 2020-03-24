@@ -1,13 +1,15 @@
 const chalk = require('chalk');
 const figlet = require('figlet');
+const opn = require('opn');
 const { Spinner } = require('clui');
 
+const buildGithubPrsLink = require('./buildGithubPrsLink');
 const configurationPrompts = require('./configurationPrompts');
 const githubService = require('./services/github');
 const getPrCountsByUser = require('./getPrCountsByUser');
 const output = require('./output');
 const printToTerminal = require('./printToTerminal');
-const userPrompts = require('./userPrompts');
+const prPrompts = require('./prPrompts');
 
 const statusSpinner = new Spinner('Getting open PRs for the team...');
 
@@ -16,7 +18,8 @@ const buildGetOpenPrs = (
   pullRequestGetter, // githubService.getPrs
   statusIndicator, // status
   configurationQuestionAsker, // configuration prompts
-  prQuestionAsker // select open prs
+  prQuestionAsker, // select open prs
+  urlOpener // opens web browser with given URL
 ) => async (argv, config) => {
   printer([figlet.textSync('get prs', { horizontalLayout: 'full' })]);
 
@@ -33,6 +36,12 @@ const buildGetOpenPrs = (
   if (!team || team.length === 0) {
     printer(['A list of github usernames must be either passed in with --usernames or configured with --configure']);
     await configurationQuestionAsker.configureGithubTeam(config);
+  }
+
+  if (argv.all) {
+    const url = buildGithubPrsLink(team);
+    urlOpener(url, { wait: false });
+    return;
   }
 
   if (!githubToken) {
@@ -58,7 +67,7 @@ const buildGetOpenPrs = (
 
     if (openPrs.length) {
       const prQuestion = prQuestionAsker.getPrQuestion(openPrs);
-      prQuestionAsker.askPrQuestion(prQuestion);
+      prQuestionAsker.askPrQuestion(prQuestion, team);
     } else {
       printer([chalk.green('There are no open prs to review. Congratulations!')]);
     }
@@ -76,7 +85,8 @@ const getOpenPrs = buildGetOpenPrs(
   githubService.getPrs,
   statusSpinner,
   configurationPrompts,
-  userPrompts
+  prPrompts,
+  opn
 );
 
 module.exports = {

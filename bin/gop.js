@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 const Conf = require('conf');
 const { argv } = require('yargs').options({
+  all: {
+    alias: 'a',
+    describe: 'Open browser window displaying all open prs'
+  },
   config: {
     alias: 'c',
     describe: 'Configure and save Github token and usernames'

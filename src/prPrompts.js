@@ -1,6 +1,8 @@
 const opn = require('opn');
 const inquirer = require('inquirer');
 
+const buildGithubPrsLink = require('./buildGithubPrsLink');
+
 const getPrQuestion = (prs) => {
   const choices = prs.map(pr => ({
     name: `${pr.title} (${pr.author.login})`,
@@ -11,16 +13,19 @@ const getPrQuestion = (prs) => {
       type: 'list',
       name: 'prToOpen',
       message: 'Which pr would you like to review?',
-      choices: [...choices, 'none'],
+      choices: ['all open prs', ...choices, 'none'],
     },
   ];
 };
 
-const askPrQuestion = prQuestion => inquirer.prompt(prQuestion)
+const askPrQuestion = (prQuestion, team) => inquirer.prompt(prQuestion)
   .then((answers) => {
+    if (answers.prToOpen === 'all open prs') {
+      const url = buildGithubPrsLink(team);
+      opn(url, { wait: false });
+    }
     if (answers.prToOpen !== 'none') {
       opn(answers.prToOpen, { wait: false });
-      // eslint-disable-next-line no-use-before-define
       askContinueQuestion(prQuestion);
     }
   });

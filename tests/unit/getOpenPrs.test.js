@@ -9,6 +9,7 @@ const openPrsFixture = require('../fixtures/pullRequests.json');
 describe('getOpenPrs', () => {
   it('should configure defaults if passed --config flag', async () => {
     const printer = sinon.stub();
+    const urlOpener = sinon.stub();
     const pullRequestGetter = sinon.stub();
     const statusStopper = sinon.stub();
     const statusStarter = sinon.stub();
@@ -25,7 +26,8 @@ describe('getOpenPrs', () => {
       pullRequestGetter, 
       statusIndicator,
       configurationQuestionAsker,
-      prQuestionAsker
+      prQuestionAsker,
+      urlOpener
     );
 
     const argv = {
@@ -40,8 +42,9 @@ describe('getOpenPrs', () => {
     assert(configureGithubToken.called, 'configureGithubToken should be called');
     assert(pullRequestGetter.notCalled, 'pullRequestGetter should not be called');
   });
-  it('should prompt to configure if there is no saved default configuration and nothing is passed in', async () => {
+  it('should open github open prs link if passed --all and configured', async () => {
     const printer = sinon.stub();
+    const urlOpener = sinon.stub();
     const pullRequestGetter = sinon.stub();
     const statusStopper = sinon.stub();
     const statusStarter = sinon.stub();
@@ -58,7 +61,42 @@ describe('getOpenPrs', () => {
       pullRequestGetter, 
       statusIndicator,
       configurationQuestionAsker,
-      prQuestionAsker
+      prQuestionAsker,
+      urlOpener
+    );
+
+    const argv = {
+      all: true
+    };
+    const config = new Map();
+    config.set('githubToken', 'FAKE_TOKEN');
+    config.set('githubTeam', 'user1 user2');
+
+    await getOpenPrs(argv, config);
+
+    assert(urlOpener.called, 'urlOpener should be called');
+  });
+  it('should prompt to configure if there is no saved default configuration and nothing is passed in', async () => {
+    const printer = sinon.stub();
+    const urlOpener = sinon.stub();
+    const pullRequestGetter = sinon.stub();
+    const statusStopper = sinon.stub();
+    const statusStarter = sinon.stub();
+    const statusIndicator = { start: statusStarter, stop: statusStopper };
+    const configureGithubTeam = sinon.stub();
+    const configureGithubToken = sinon.stub();
+    const configurationQuestionAsker = {
+      configureGithubTeam,
+      configureGithubToken
+    };
+    const prQuestionAsker = {};
+    const getOpenPrs = buildGetOpenPrs(
+      printer, 
+      pullRequestGetter, 
+      statusIndicator,
+      configurationQuestionAsker,
+      prQuestionAsker,
+      urlOpener
     );
 
     const argv = {};
@@ -71,6 +109,7 @@ describe('getOpenPrs', () => {
   });
   it('should not prompt to configure token if --token is passed in', async () => {
     const printer = sinon.stub();
+    const urlOpener = sinon.stub();
     const pullRequestGetter = sinon.stub();
     const statusStopper = sinon.stub();
     const statusStarter = sinon.stub();
@@ -87,7 +126,8 @@ describe('getOpenPrs', () => {
       pullRequestGetter, 
       statusIndicator,
       configurationQuestionAsker,
-      prQuestionAsker
+      prQuestionAsker,
+      urlOpener
     );
 
     const argv = {
@@ -103,6 +143,7 @@ describe('getOpenPrs', () => {
   });
   it('should not prompt to configure usernames if --usernames is passed in', async () => {
     const printer = sinon.stub();
+    const urlOpener = sinon.stub();
     const pullRequestGetter = sinon.stub();
     const statusStopper = sinon.stub();
     const statusStarter = sinon.stub();
@@ -119,7 +160,8 @@ describe('getOpenPrs', () => {
       pullRequestGetter, 
       statusIndicator,
       configurationQuestionAsker,
-      prQuestionAsker
+      prQuestionAsker,
+      urlOpener
     );
 
     const argv = {
@@ -135,6 +177,7 @@ describe('getOpenPrs', () => {
   });
   it('should not prompt to configure if there are already saved defaults', async () => {
     const printer = sinon.stub();
+    const urlOpener = sinon.stub();
     const pullRequestGetter = sinon.stub();
     const statusStopper = sinon.stub();
     const statusStarter = sinon.stub();
@@ -151,7 +194,8 @@ describe('getOpenPrs', () => {
       pullRequestGetter, 
       statusIndicator,
       configurationQuestionAsker,
-      prQuestionAsker
+      prQuestionAsker,
+      urlOpener
     );
 
     const argv = {};
@@ -166,6 +210,7 @@ describe('getOpenPrs', () => {
   });
   it('should start and stop spinner if pullRequestGetter throws', async () => {
     const printer = sinon.stub();
+    const urlOpener = sinon.stub();
     const pullRequestGetter = sinon.stub().throws();
     const statusStopper = sinon.stub();
     const statusStarter = sinon.stub();
@@ -182,7 +227,8 @@ describe('getOpenPrs', () => {
       pullRequestGetter, 
       statusIndicator,
       configurationQuestionAsker,
-      prQuestionAsker
+      prQuestionAsker,
+      urlOpener
     );
 
     const argv = {};
@@ -198,6 +244,7 @@ describe('getOpenPrs', () => {
   });
   it('should not ask to select pull request to open if there are no open pull requests', async () => {
     const printer = sinon.stub();
+    const urlOpener = sinon.stub();
     const pullRequestGetter = sinon.stub().returns([]);
     const statusStopper = sinon.stub();
     const statusStarter = sinon.stub();
@@ -217,7 +264,8 @@ describe('getOpenPrs', () => {
       pullRequestGetter, 
       statusIndicator,
       configurationQuestionAsker,
-      prQuestionAsker
+      prQuestionAsker,
+      urlOpener
     );
 
     const argv = {};
@@ -233,6 +281,7 @@ describe('getOpenPrs', () => {
   });
   it('should ask to select pull request to open if there are open pull requests', async () => {
     const printer = sinon.stub();
+    const urlOpener = sinon.stub();
     const pullRequestGetter = sinon.stub().returns(openPrsFixture);
     const statusStopper = sinon.stub();
     const statusStarter = sinon.stub();
@@ -252,7 +301,8 @@ describe('getOpenPrs', () => {
       pullRequestGetter, 
       statusIndicator,
       configurationQuestionAsker,
-      prQuestionAsker
+      prQuestionAsker,
+      urlOpener
     );
 
     const argv = {};

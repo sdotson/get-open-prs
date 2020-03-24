@@ -8,7 +8,7 @@
 
 ## Instructions
 - You can get the current open prs for your team by typing `get-open-prs` in any directory.
-- After typing the `get-open-prs` command, a prompt will appear for you to select a specific pr to review. Once you hit enter, your default browser will open the pr.
+- After typing the `get-open-prs` command, a prompt will appear for you to select a specific pr to review, `all open prs` (opens link in github displaying all prs), or `none` to exit the flow. Once you hit enter, your default browser will open the pr.
 - You'll then be given the option to continue reviewing other prs.
 - Optionally, you can create an alias for `get-open-prs` if that's too many letters to type out. Simply edit `~/.bash_profile` or `~/.zprofile` (if you use zsh) and add the following:
 
@@ -20,6 +20,7 @@ In the above, `gop` is the new shorter command. This could really be anything.
 ## Options
 |Option|Description|Default|Required|
 |----|---|---|---|
+|`-a, --all`|Skip Github requests and open browser with all open prs|`null`|`false`|
 |`-c, --config`|Set up default Github token and usernames|`null`|`false`|
 |`-t, --token`|Token. Overrides any saved default Github token|`config or null`|`false`|
 |`-u, --usernames`|Usernames. Overrides any saved default usernames|` config or null`|`false`|
