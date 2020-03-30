@@ -1,5 +1,8 @@
 # CHANGE lOG
 
+## 2.2.1
+- Bump lodash from 4.17.11 to 4.17.15 address security issue
+
 ## 2.2.0
 - Add `--owners` flag and default configuration value to restrict results to repos owned by specific orgs or individuals.
 
