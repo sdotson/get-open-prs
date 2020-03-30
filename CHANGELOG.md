@@ -1,5 +1,8 @@
 # CHANGE lOG
 
+## 2.2.4
+- Update circleci configuration file
+
 ## 2.2.3
 - Update package.json to indicate correct minimum Node requirement
 
