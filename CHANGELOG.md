@@ -1,5 +1,8 @@
 # CHANGE lOG
 
+## 2.2.3
+- Update package.json to indicate correct minimum Node requirement
+
 ## 2.2.2
 - Upgrade mocha and yargs to more recent versions
 
