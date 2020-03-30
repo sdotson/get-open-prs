@@ -66,5 +66,5 @@ const getPrsByLogin = async (login, token, ownerFilter = []) => {
 };
 
 module.exports = {
-  getPrs,
+  getPrs
 };
