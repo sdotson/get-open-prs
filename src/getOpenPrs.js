@@ -26,11 +26,14 @@ const buildGetOpenPrs = (
   if (argv.config) {
     await configurationQuestionAsker.configureGithubTeam(config);
     await configurationQuestionAsker.configureGithubToken(config);
+    await configurationQuestionAsker.configureGithubOwners(config);
     return;
   }
 
   const githubTeam = argv.usernames || config.get('githubTeam');
   const team = githubTeam && githubTeam.split(' ');
+  const githubOwners = argv.owners || config.get('githubOwners');
+  const owners = githubOwners && githubOwners.split(' ');
   const githubToken = argv.token || config.get('githubToken');
 
   if (!team || team.length === 0) {
@@ -39,7 +42,7 @@ const buildGetOpenPrs = (
   }
 
   if (argv.all) {
-    const url = buildGithubPrsLink(team);
+    const url = buildGithubPrsLink(team, owners);
     urlOpener(url, { wait: false });
     return;
   }
@@ -51,7 +54,7 @@ const buildGetOpenPrs = (
 
   try {
     statusIndicator.start();
-    const openPrs = await pullRequestGetter(team, githubToken);
+    const openPrs = await pullRequestGetter(team, githubToken, owners);
     const prCountsByUser = getPrCountsByUser(team, openPrs);
     statusIndicator.stop();
 
@@ -67,7 +70,7 @@ const buildGetOpenPrs = (
 
     if (openPrs.length) {
       const prQuestion = prQuestionAsker.getPrQuestion(openPrs);
-      prQuestionAsker.askPrQuestion(prQuestion, team);
+      await prQuestionAsker.askPrQuestion(prQuestion, team, owners);
     } else {
       printer([chalk.green('There are no open prs to review. Congratulations!')]);
     }
@@ -79,7 +82,7 @@ const buildGetOpenPrs = (
     ]);
   }
 };
-
+// default implementation
 const getOpenPrs = buildGetOpenPrs(
   printToTerminal,
   githubService.getPrs,

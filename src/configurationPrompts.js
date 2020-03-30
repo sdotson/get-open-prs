@@ -39,7 +39,21 @@ const configureGithubToken = async (config) => {
   config.set('githubToken', githubToken);
 };
 
+const configureGithubOwners = async (config) => {
+  const { githubOwners } = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'githubOwners',
+      message: 'Github repo orgs and owners, each one separated by a space. Leave blank to return all. Type "clear" to remove previously entered default.',
+      default: config.get('githubOwners')
+    }
+  ]);
+  const newValue = githubOwners === 'clear' ? '' : githubOwners;
+  config.set('githubOwners', newValue);
+};
+
 module.exports = {
+  configureGithubOwners,
   configureGithubTeam,
   configureGithubToken
 };

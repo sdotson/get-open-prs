@@ -22,6 +22,7 @@ In the above, `gop` is the new shorter command. This could really be anything.
 |----|---|---|---|
 |`-a, --all`|Skip Github requests and open browser with all open prs|`null`|`false`|
 |`-c, --config`|Set up default Github token and usernames|`null`|`false`|
+|`-o, --owners`|Restrict to repos owned by specific orgs or users|`null`|`false`|
 |`-t, --token`|Token. Overrides any saved default Github token|`config or null`|`false`|
 |`-u, --usernames`|Usernames. Overrides any saved default usernames|` config or null`|`false`|
 |`-v, --verbose`|Verbose. Print out pull request details|`false`|`false`|
@@ -36,9 +37,17 @@ get-open-prs
 ```
 get-open-prs --config
 ```
-### Pass in usernames override
+### Pass in multiple usernames override
 ```
-get-open-prs --usernames user1 user2 user3 user4
+get-open-prs --usernames "user1 user2 user3 user4"
+```
+### Pass in one single usernames override
+```
+get-open-prs --usernames user1
+```
+### Go nuts
+```
+get-open-prs --usernames "user1 user2" --owners my-awesome-org 
 ```
 ## Screenshot
 ![screenshot](https://raw.githubusercontent.com/sdotson/get-open-prs/master/screenshot.png)

@@ -1,5 +1,8 @@
 # CHANGE lOG
 
+## 2.2.0
+- Add `--owners` flag and default configuration value to restrict results to repos owned by specific orgs or individuals.
+
 ## 2.1.0
 - Add `--all` flag and `all` pr question option. Both open a browser window with a list of all open prs.
 

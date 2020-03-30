@@ -1,6 +1,6 @@
 {
   "name": "get-open-prs",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Get open PRs for your team",
   "main": "index.js",
   "repository": {
@@ -34,6 +34,7 @@
     "graphql-request": "^1.8.2",
     "graphql-tag": "^2.10.0",
     "inquirer": "^3.3.0",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "opn": "^5.1.0",
     "yargs": "^10.0.3"

@@ -18,10 +18,10 @@ const getPrQuestion = (prs) => {
   ];
 };
 
-const askPrQuestion = (prQuestion, team) => inquirer.prompt(prQuestion)
+const askPrQuestion = (prQuestion, team, owners) => inquirer.prompt(prQuestion)
   .then((answers) => {
     if (answers.prToOpen === 'all open prs') {
-      const url = buildGithubPrsLink(team);
+      const url = buildGithubPrsLink(team, owners);
       opn(url, { wait: false });
     }
     if (answers.prToOpen !== 'none') {

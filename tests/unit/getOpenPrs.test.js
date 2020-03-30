@@ -16,9 +16,11 @@ describe('getOpenPrs', () => {
     const statusIndicator = { start: statusStarter, stop: statusStopper };
     const configureGithubTeam = sinon.stub();
     const configureGithubToken = sinon.stub();
+    const configureGithubOwners = sinon.stub();
     const configurationQuestionAsker = {
       configureGithubTeam,
-      configureGithubToken
+      configureGithubToken,
+      configureGithubOwners
     };
     const prQuestionAsker = {};
     const getOpenPrs = buildGetOpenPrs(
@@ -40,6 +42,7 @@ describe('getOpenPrs', () => {
     assert(printer.calledWith([figlet.textSync('get prs', { horizontalLayout: 'full' })]), 'should print "GET PRS" logo');
     assert(configureGithubTeam.called, 'configureGithubTeam should be called');
     assert(configureGithubToken.called, 'configureGithubToken should be called');
+    assert(configureGithubOwners.called, 'configureGithubOwners should be called');
     assert(pullRequestGetter.notCalled, 'pullRequestGetter should not be called');
   });
   it('should open github open prs link if passed --all and configured', async () => {
@@ -51,9 +54,11 @@ describe('getOpenPrs', () => {
     const statusIndicator = { start: statusStarter, stop: statusStopper };
     const configureGithubTeam = sinon.stub();
     const configureGithubToken = sinon.stub();
+    const configureGithubOwners = sinon.stub();
     const configurationQuestionAsker = {
       configureGithubTeam,
-      configureGithubToken
+      configureGithubToken,
+      configureGithubOwners
     };
     const prQuestionAsker = {};
     const getOpenPrs = buildGetOpenPrs(
@@ -85,9 +90,11 @@ describe('getOpenPrs', () => {
     const statusIndicator = { start: statusStarter, stop: statusStopper };
     const configureGithubTeam = sinon.stub();
     const configureGithubToken = sinon.stub();
+    const configureGithubOwners = sinon.stub();
     const configurationQuestionAsker = {
       configureGithubTeam,
-      configureGithubToken
+      configureGithubToken,
+      configureGithubOwners
     };
     const prQuestionAsker = {};
     const getOpenPrs = buildGetOpenPrs(
@@ -116,9 +123,11 @@ describe('getOpenPrs', () => {
     const statusIndicator = { start: statusStarter, stop: statusStopper };
     const configureGithubTeam = sinon.stub();
     const configureGithubToken = sinon.stub();
+    const configureGithubOwners = sinon.stub();
     const configurationQuestionAsker = {
       configureGithubTeam,
-      configureGithubToken
+      configureGithubToken,
+      configureGithubOwners
     };
     const prQuestionAsker = {};
     const getOpenPrs = buildGetOpenPrs(
@@ -150,9 +159,11 @@ describe('getOpenPrs', () => {
     const statusIndicator = { start: statusStarter, stop: statusStopper };
     const configureGithubTeam = sinon.stub();
     const configureGithubToken = sinon.stub();
+    const configureGithubOwners = sinon.stub();
     const configurationQuestionAsker = {
       configureGithubTeam,
-      configureGithubToken
+      configureGithubToken,
+      configureGithubOwners
     };
     const prQuestionAsker = {};
     const getOpenPrs = buildGetOpenPrs(
@@ -184,9 +195,11 @@ describe('getOpenPrs', () => {
     const statusIndicator = { start: statusStarter, stop: statusStopper };
     const configureGithubTeam = sinon.stub();
     const configureGithubToken = sinon.stub();
+    const configureGithubOwners = sinon.stub();
     const configurationQuestionAsker = {
       configureGithubTeam,
-      configureGithubToken
+      configureGithubToken,
+      configureGithubOwners
     };
     const prQuestionAsker = {};
     const getOpenPrs = buildGetOpenPrs(
@@ -217,9 +230,11 @@ describe('getOpenPrs', () => {
     const statusIndicator = { start: statusStarter, stop: statusStopper };
     const configureGithubTeam = sinon.stub();
     const configureGithubToken = sinon.stub();
+    const configureGithubOwners = sinon.stub();
     const configurationQuestionAsker = {
       configureGithubTeam,
-      configureGithubToken
+      configureGithubToken,
+      configureGithubOwners
     };
     const prQuestionAsker = {};
     const getOpenPrs = buildGetOpenPrs(
@@ -251,9 +266,11 @@ describe('getOpenPrs', () => {
     const statusIndicator = { start: statusStarter, stop: statusStopper };
     const configureGithubTeam = sinon.stub();
     const configureGithubToken = sinon.stub();
+    const configureGithubOwners = sinon.stub();
     const configurationQuestionAsker = {
       configureGithubTeam,
-      configureGithubToken
+      configureGithubToken,
+      configureGithubOwners
     };
     const prQuestionAsker = {
       askPrQuestion: sinon.stub(),
@@ -288,9 +305,11 @@ describe('getOpenPrs', () => {
     const statusIndicator = { start: statusStarter, stop: statusStopper };
     const configureGithubTeam = sinon.stub();
     const configureGithubToken = sinon.stub();
+    const configureGithubOwners = sinon.stub();
     const configurationQuestionAsker = {
       configureGithubTeam,
-      configureGithubToken
+      configureGithubToken,
+      configureGithubOwners
     };
     const prQuestionAsker = {
       askPrQuestion: sinon.stub(),

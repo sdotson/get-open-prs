@@ -9,6 +9,11 @@
         "author": {
             "login": "awesomo"
         },
+        "repository": {
+            "owner": {
+                "login": "org1"
+            }
+        },
         "updatedAt": "2018-06-19T20:20:18Z",
         "createdAt": "2018-06-19T20:20:18Z"
     },
@@ -21,6 +26,11 @@
         "url": "https://github.com/fakeOrg/jimi-hendrix-worker/pull/43",
         "author": {
             "login": "awesomo"
+        },
+        "repository": {
+            "owner": {
+                "login": "org2"
+            }
         },
         "updatedAt": "2018-10-17T16:00:34Z",
         "createdAt": "2018-08-02T12:44:35Z"
@@ -35,6 +45,11 @@
         "author": {
             "login": "awesomo"
         },
+        "repository": {
+            "owner": {
+                "login": "org1"
+            }
+        },
         "updatedAt": "2018-10-19T13:11:36Z",
         "createdAt": "2018-10-19T01:56:10Z"
     },
@@ -47,6 +62,11 @@
         "url": "https://github.com/fakeOrg/best-service/pull/95",
         "author": {
             "login": "awesomo"
+        },
+        "repository": {
+            "owner": {
+                "login": "org2"
+            }
         },
         "updatedAt": "2018-10-19T13:13:16Z",
         "createdAt": "2018-10-19T03:51:15Z"
@@ -61,6 +81,11 @@
         "author": {
             "login": "jesuschrist"
         },
+        "repository": {
+            "owner": {
+                "login": "org1"
+            }
+        },
         "updatedAt": "2018-12-04T16:14:04Z",
         "createdAt": "2018-12-04T16:14:03Z"
     },
@@ -73,6 +98,11 @@
         "url": "https://github.com/fakeOrg/db-hotel-properties/pull/37",
         "author": {
             "login": "dumbo"
+        },
+        "repository": {
+            "owner": {
+                "login": "org2"
+            }
         },
         "updatedAt": "2018-12-04T16:43:07Z",
         "createdAt": "2018-12-03T21:03:17Z"
@@ -87,6 +117,11 @@
         "author": {
             "login": "goofy"
         },
+        "repository": {
+            "owner": {
+                "login": "org1"
+            }
+        },
         "updatedAt": "2017-08-03T10:01:52Z",
         "createdAt": "2017-01-12T17:15:55Z"
     },
@@ -99,6 +134,10 @@
         "url": "https://github.com/goofy/finances-react/pull/1",
         "author": {
             "login": "goofy"
+        },"repository": {
+            "owner": {
+                "login": "org3"
+            }
         },
         "updatedAt": "2017-09-07T02:40:01Z",
         "createdAt": "2017-09-07T02:32:32Z"
@@ -112,6 +151,11 @@
         "url": "https://github.com/fakeOrg/service-experience-service/pull/478",
         "author": {
             "login": "goofy"
+        },
+        "repository": {
+            "owner": {
+                "login": "org4"
+            }
         },
         "updatedAt": "2018-12-04T16:46:50Z",
         "createdAt": "2018-12-04T16:38:24Z"

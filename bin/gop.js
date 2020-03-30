@@ -9,6 +9,10 @@ const { argv } = require('yargs').options({
     alias: 'c',
     describe: 'Configure and save Github token and usernames'
   },
+  owners: {
+    alias: 'o',
+    describe: 'Narrow results down to specific Github organizations/owners'
+  },
   token: {
     alias: 't',
     describe: 'Pass in Github token'

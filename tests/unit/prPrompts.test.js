@@ -21,7 +21,6 @@ describe('prPrompts', () => {
       }
     ];
     const result = prPrompts.getPrQuestion(prs);
-    console.log(JSON.stringify(result));
     assert.deepEqual(result, [
       {
         type: 'list',
