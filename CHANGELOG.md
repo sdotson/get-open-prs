@@ -1,5 +1,8 @@
 # CHANGE lOG
 
+## 2.2.2
+- Upgrade mocha and yargs to more recent versions
+
 ## 2.2.1
 - Bump lodash from 4.17.11 to 4.17.15 address security issue
 
