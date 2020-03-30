@@ -34,7 +34,7 @@
     "graphql-request": "^1.8.2",
     "graphql-tag": "^2.10.0",
     "inquirer": "^3.3.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.13",
     "moment": "^2.24.0",
     "opn": "^5.1.0",
     "yargs": "^10.0.3"
