@@ -1,4 +1,7 @@
 const assert = require('chai').assert;
+const sinon = require('sinon');
+const inquirer = require('inquirer');
+const opn = require('opn');
 
 const prPrompts = require('../../src/prPrompts');
 
@@ -34,5 +37,32 @@ describe('prPrompts', () => {
         ]
       }
     ]);
+  });
+  context('askPrQuestion()', () => {
+    // TODO: Make this better
+    it('should work', () => {
+      const question = [
+        {
+          type: 'list',
+          name: 'prToOpen',
+          message: 'Which pr would you like to review?',
+          choices: ['all open prs', ...['pr-url-1', 'pr-url-1'], 'none'],
+        },
+      ];
+      const continueQ = [
+        {
+          type: 'confirm',
+          name: 'continue',
+          message: 'Would you like to review other outstanding PRs?',
+          default: true,
+        },
+      ];
+      const inquirerStub = sinon.stub(inquirer, 'prompt');
+      inquirerStub.withArgs(question).resolves({
+        prToOpen: 'pr-url-1'
+      });
+      prPrompts.askPrQuestion(question);
+      assert(inquirerStub.calledWith(question), 'inquirer.prompt for pr should be called');
+    })
   });
 });

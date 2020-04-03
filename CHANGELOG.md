@@ -1,5 +1,8 @@
 # CHANGE lOG
 
+## 2.2.5
+- Fix select pr continue bug. Add more tests
+
 ## 2.2.4
 - Update circleci configuration file
 

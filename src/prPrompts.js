@@ -26,11 +26,11 @@ const askPrQuestion = (prQuestion, team, owners) => inquirer.prompt(prQuestion)
     }
     if (answers.prToOpen !== 'none') {
       opn(answers.prToOpen, { wait: false });
-      askContinueQuestion(prQuestion);
+      askContinueQuestion(prQuestion, team, owners);
     }
   });
 
-const askContinueQuestion = prQuestion => inquirer.prompt([
+const askContinueQuestion = (prQuestion, team, owners) => inquirer.prompt([
   {
     type: 'confirm',
     name: 'continue',
@@ -40,7 +40,7 @@ const askContinueQuestion = prQuestion => inquirer.prompt([
 ])
   .then((answers) => {
     if (answers.continue) {
-      askPrQuestion(prQuestion);
+      askPrQuestion(prQuestion, team, owners);
     }
   });
 
