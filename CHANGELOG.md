@@ -1,5 +1,8 @@
 # CHANGE lOG
 
+## 2.2.6
+- Fix select "all open prs" bug. Add more tests
+
 ## 2.2.5
 - Fix select pr continue bug. Add more tests
 
