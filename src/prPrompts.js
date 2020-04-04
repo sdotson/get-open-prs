@@ -23,11 +23,14 @@ const askPrQuestion = (prQuestion, team, owners) => inquirer.prompt(prQuestion)
     if (answers.prToOpen === 'all open prs') {
       const url = buildGithubPrsLink(team, owners);
       opn(url, { wait: false });
+      return false;
     }
-    if (answers.prToOpen !== 'none') {
+
+    if (!['all open prs', 'none'].includes(answers.prToOpen)) {
       opn(answers.prToOpen, { wait: false });
-      askContinueQuestion(prQuestion, team, owners);
+      return askContinueQuestion(prQuestion, team, owners);
     }
+    return false;
   });
 
 const askContinueQuestion = (prQuestion, team, owners) => inquirer.prompt([
@@ -36,12 +39,13 @@ const askContinueQuestion = (prQuestion, team, owners) => inquirer.prompt([
     name: 'continue',
     message: 'Would you like to review other outstanding PRs?',
     default: true,
-  },
+  }
 ])
   .then((answers) => {
     if (answers.continue) {
-      askPrQuestion(prQuestion, team, owners);
+      return askPrQuestion(prQuestion, team, owners);
     }
+    return false;
   });
 
 
