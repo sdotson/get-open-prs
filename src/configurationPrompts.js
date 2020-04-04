@@ -9,6 +9,7 @@ const configureGithubTeam = async (config) => {
       default: config.get('githubTeam'),
     },
   ]);
+
   const { githubConfirmation } = await inquirer.prompt([
     {
       type: 'confirm',
@@ -17,10 +18,11 @@ const configureGithubTeam = async (config) => {
       default: true,
     },
   ]);
+
   if (!githubConfirmation) {
-    await configureGithubTeam();
+    return configureGithubTeam(config);
   }
-  config.set('githubTeam', githubUsernames);
+  return config.set('githubTeam', githubUsernames);
 };
 
 const configureGithubToken = async (config) => {
