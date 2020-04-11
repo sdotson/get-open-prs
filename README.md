@@ -1,5 +1,6 @@
 # get-open-prs
 [![CircleCI](https://circleci.com/gh/sdotson/get-open-prs.svg?style=svg&circle-token=dcee4082855c265ccf63c1c581bc3229b2a174ff)](https://circleci.com/gh/sdotson/get-open-prs)
+![nycrc config on GitHub](https://img.shields.io/nycrc/sdotson/get-open-prs)
 
 ## Installation
 1. `npm install -g get-open-prs` to install globally and to be able to use the keyboard shortcut anywhere.
