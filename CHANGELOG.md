@@ -1,4 +1,4 @@
-# CHANGE lOG
+# CHANGELOG
 
 ## 2.2.8
 - Fix configure github token re-prompt bug

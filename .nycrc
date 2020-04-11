@@ -1,0 +1,16 @@
+{
+  "check-coverage": true,
+  "lines": 90,
+  "functions": 90,
+  "branches": 90,
+  "all": true,
+  "extension": [
+    ".js"
+  ],
+  "exclude": [
+    "test/"
+  ],
+  "include": [
+    "src/**/*.js"
+  ]
+}
