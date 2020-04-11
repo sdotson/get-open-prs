@@ -1,7 +1,10 @@
 # CHANGE lOG
 
+## 2.2.8
+- Fix configure github token re-prompt bug
+
 ## 2.2.7
-- Fixed miscellaneous bugs discovered while adding more tests
+- Fix miscellaneous bugs discovered while adding more tests
 
 ## 2.2.6
 - Fix select "all open prs" bug. Add more tests

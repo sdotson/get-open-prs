@@ -100,5 +100,21 @@ describe('prPrompts', () => {
       assert(inquirerStub.calledWith(question), 'inquirer.prompt for pr question should be called');
       assert(!inquirerStub.calledWith(continueQuestion), 'inquirer.prompt for continue question should not be called');
     });
+
+    it('should prompt further if user selects "yes"', async () => {
+      const inquirerStub = sinon.stub(inquirer, 'prompt');
+      inquirerStub.withArgs(question).resolves({
+        prToOpen: 'pr-url-1'
+      });
+      inquirerStub.withArgs(continueQuestion)
+        .onFirstCall().resolves({ continue: true })
+        .onSecondCall().resolves({ continue: false });
+
+      await prPrompts.askPrQuestion(question);
+
+      assert(inquirerStub.calledWith(question), 'inquirer.prompt for pr question should be called');
+      assert(inquirerStub.calledWith(continueQuestion), 'inquirer.prompt for continue question should be called');
+      assert(inquirerStub.callCount === 4, 'inquirer should be called twice for continue and twice for prs');
+    });
   });
 });

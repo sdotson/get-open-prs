@@ -36,9 +36,9 @@ const configureGithubToken = async (config) => {
   ]);
   if (!githubToken) {
     console.log('Github token is required to fetch pull requests.');
-    await configureGithubToken();
+    return configureGithubToken(config);
   }
-  config.set('githubToken', githubToken);
+  return config.set('githubToken', githubToken);
 };
 
 const configureGithubOwners = async (config) => {

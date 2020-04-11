@@ -4,13 +4,18 @@ const sinon = require('sinon');
 const printToTerminal = require('../../src/printToTerminal');
 
 describe('printToTerminal', () => {
+  let consoleStub;
   beforeEach(() => {
-    sinon.stub(console, 'log');
+    consoleStub = sinon.stub(console, 'log');
+  });
+
+  afterEach(() => {
+    consoleStub.restore();
   })
+
   it('should work properly', () => {
     printToTerminal(['whoa', 'there']);
-    assert(console.log.calledWith('whoa'), 'console.log should be called with argument 1');
-    assert(console.log.calledWith('there'), 'console.log should be called with argument 2');
-
+    assert(consoleStub.calledWith('whoa'), 'console.log should be called with argument 1');
+    assert(consoleStub.calledWith('there'), 'console.log should be called with argument 2');
   });
 });

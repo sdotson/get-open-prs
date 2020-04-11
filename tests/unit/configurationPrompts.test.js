@@ -12,6 +12,7 @@ describe('configurationPrompts', () => {
   afterEach(() => {
     inquirer.prompt.restore();
   });
+
   context('configureGithubOwners()', () => {
     const question = [
       {
@@ -48,6 +49,7 @@ describe('configurationPrompts', () => {
       assert(config.get('githubOwners') === '', 'githubOwners should be unset on config');
     });
   });
+
   context('configureGithubTeam()', () => {
     const question = [
       {
@@ -73,6 +75,7 @@ describe('configurationPrompts', () => {
         default: true,
       },
     ];
+
     it('should work properly', async () => {
       const inquirerStub = sinon.stub(inquirer, 'prompt');
       inquirerStub.withArgs(question).resolves({
@@ -90,6 +93,7 @@ describe('configurationPrompts', () => {
       assert(inquirerStub.calledWith(confirmation), 'inquirer.prompt for confirmation should be called');
       assert(config.get('githubTeam') === 'user1 user2', 'githubTeam should be set on config');
     });
+
     it('should work properly if user does not confirm at first', async () => {
       const inquirerStub = sinon.stub(inquirer, 'prompt');
       inquirerStub.withArgs(question)
@@ -120,6 +124,7 @@ describe('configurationPrompts', () => {
       assert(config.get('githubTeam') === 'user4 user5', 'githubTeam should be set on config');
     });
   });
+
   context('configureGithubToken()', () => {
     const question = [
       {
@@ -129,6 +134,16 @@ describe('configurationPrompts', () => {
         default: ''
       }
     ];
+
+    let consoleStub;
+    beforeEach(() => {
+      consoleStub = sinon.stub(console, 'log');
+    });
+
+    afterEach(() => {
+      consoleStub.restore();
+    })
+
     it('should work properly', async () => {
       const inquirerStub = sinon.stub(inquirer, 'prompt');
       inquirerStub.withArgs(question).resolves({
@@ -140,6 +155,25 @@ describe('configurationPrompts', () => {
       await configurationPrompts.configureGithubToken(config);
 
       assert(inquirerStub.calledWith(question), 'inquirer.prompt for question should be called');
+      assert(config.get('githubToken') === 'TOKEN', 'githubTeam should be set on config');
+    });
+
+    it('should prompt again if answer is falsey', async () => {
+      const inquirerStub = sinon.stub(inquirer, 'prompt');
+      inquirerStub.withArgs(question)
+        .onFirstCall().resolves({
+          githubToken: ''
+        })
+        .onSecondCall().resolves({
+          githubToken: 'TOKEN'
+        });
+
+      const config = new Map();
+      config.set('githubToken', '');
+      await configurationPrompts.configureGithubToken(config);
+
+      assert(inquirerStub.calledWith(question), 'inquirer.prompt for question should be called');
+      assert(consoleStub.calledWith('Github token is required to fetch pull requests.'), 'console.log should be called with error message');
       assert(config.get('githubToken') === 'TOKEN', 'githubTeam should be set on config');
     });
   });
