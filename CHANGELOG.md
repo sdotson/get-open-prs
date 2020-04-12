@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.2.9
+- Update `opn` to `open`. Also added badges. Nearly 100% code test coverage now
+
 ## 2.2.8
 - Fix configure github token re-prompt bug
 

@@ -3,10 +3,20 @@ const sinon = require('sinon');
 const figlet = require('figlet');
 const chalk = require('chalk');
 
+const output = require('../../src/output');
 const { buildGetOpenPrs } = require('../../src/getOpenPrs');
 const openPrsFixture = require('../fixtures/pullRequests.json');
 
 describe('getOpenPrs', () => {
+  let outputStub;
+  beforeEach(() => {
+    outputStub = sinon.stub(output, 'generatePrsList');
+  });
+
+  afterEach(() => {
+    outputStub.restore();
+  })
+
   it('should configure defaults if passed --config flag', async () => {
     const printer = sinon.stub();
     const urlOpener = sinon.stub();
@@ -331,6 +341,47 @@ describe('getOpenPrs', () => {
 
     await getOpenPrs(argv, config);
 
+    assert(prQuestionAsker.getPrQuestion.called, 'should call getPrQuestion');
+    assert(prQuestionAsker.askPrQuestion.called, 'should call askPrQuestion');
+  });
+
+  it('should print verbose if --verbose passed in', async () => {
+    const printer = sinon.stub();
+    const urlOpener = sinon.stub();
+    const pullRequestGetter = sinon.stub().returns(openPrsFixture);
+    const statusStopper = sinon.stub();
+    const statusStarter = sinon.stub();
+    const statusIndicator = { start: statusStarter, stop: statusStopper };
+    const configureGithubTeam = sinon.stub();
+    const configureGithubToken = sinon.stub();
+    const configureGithubOwners = sinon.stub();
+    const configurationQuestionAsker = {
+      configureGithubTeam,
+      configureGithubToken,
+      configureGithubOwners
+    };
+    const prQuestionAsker = {
+      askPrQuestion: sinon.stub(),
+      getPrQuestion: sinon.stub()
+    };
+
+    const getOpenPrs = buildGetOpenPrs(
+      printer, 
+      pullRequestGetter, 
+      statusIndicator,
+      configurationQuestionAsker,
+      prQuestionAsker,
+      urlOpener
+    );
+
+    const argv = { verbose: true };
+    const config = new Map();
+    config.set('githubToken', 'FAKE_TOKEN');
+    config.set('githubTeam', 'user1 user2');
+
+    await getOpenPrs(argv, config);
+
+    assert(outputStub.called, 'should call output stub');
     assert(prQuestionAsker.getPrQuestion.called, 'should call getPrQuestion');
     assert(prQuestionAsker.askPrQuestion.called, 'should call askPrQuestion');
   });

@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const figlet = require('figlet');
-const opn = require('opn');
+const open = require('open');
 const { Spinner } = require('clui');
 
 const buildGithubPrsLink = require('./buildGithubPrsLink');
@@ -89,7 +89,7 @@ const getOpenPrs = buildGetOpenPrs(
   statusSpinner,
   configurationPrompts,
   prPrompts,
-  opn
+  open
 );
 
 module.exports = {

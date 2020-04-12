@@ -1,4 +1,4 @@
-const opn = require('opn');
+const open = require('open');
 const inquirer = require('inquirer');
 
 const buildGithubPrsLink = require('./buildGithubPrsLink');
@@ -22,12 +22,12 @@ const askPrQuestion = (prQuestion, team, owners) => inquirer.prompt(prQuestion)
   .then((answers) => {
     if (answers.prToOpen === 'all open prs') {
       const url = buildGithubPrsLink(team, owners);
-      opn(url, { wait: false });
+      open(url, { wait: false });
       return false;
     }
 
     if (!['all open prs', 'none'].includes(answers.prToOpen)) {
-      opn(answers.prToOpen, { wait: false });
+      open(answers.prToOpen, { wait: false });
       return askContinueQuestion(prQuestion, team, owners);
     }
     return false;

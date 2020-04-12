@@ -1,6 +1,6 @@
 {
   "name": "get-open-prs",
-  "version": "2.2.8",
+  "version": "2.2.9",
   "description": "Get open PRs for your team",
   "main": "index.js",
   "repository": {
@@ -36,7 +36,7 @@
     "inquirer": "^3.3.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "opn": "^5.1.0",
+    "open": "^7.0.3",
     "yargs": "^15.3.1"
   },
   "devDependencies": {
@@ -44,9 +44,27 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
     "mocha": "^7.0.1",
     "nock": "^12.0.3",
     "nyc": "^15.0.0",
+    "prettier": "^1.19.1",
     "sinon": "^7.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
