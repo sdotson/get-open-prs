@@ -6,15 +6,10 @@ const _ = require('lodash');
 const GITHUB_API_URL = 'https://api.github.com/graphql';
 
 const getPrs = async (team, token, ownerFilter) => {
-  try {
-    const res = await Promise.all(
-      team.map(username => getPrsByLogin(username, token, ownerFilter)),
-    );
-    return Array.prototype.concat.apply([], res);
-  } catch (err) {
-    console.log(chalk.red('Something went wrong. Verify your github token.'), err);
-  }
-  return [];
+  const res = await Promise.all(
+    team.map(username => getPrsByLogin(username, token, ownerFilter))
+  );
+  return Array.prototype.concat.apply([], res);
 };
 
 const getPrsByLogin = async (login, token, ownerFilter = []) => {
