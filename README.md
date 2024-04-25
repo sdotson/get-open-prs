@@ -1,4 +1,4 @@
-# get-open-prs
+# get-open-prs (OMG)
 [![CircleCI](https://circleci.com/gh/sdotson/get-open-prs.svg?style=svg&circle-token=dcee4082855c265ccf63c1c581bc3229b2a174ff)](https://circleci.com/gh/sdotson/get-open-prs)
 ![nycrc config on GitHub](https://img.shields.io/nycrc/sdotson/get-open-prs)
 ![node-current](https://img.shields.io/node/v/get-open-prs)
